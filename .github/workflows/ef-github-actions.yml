@@ -1,0 +1,16 @@
+name: Image Build
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-docker-image:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: Nodejs
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build Docker Image
+      run: docker build -t $IMAGE_NAME:latest .
