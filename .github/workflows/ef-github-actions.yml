@@ -11,15 +11,15 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker Image
-      run: docker build -t nodejs:latest .
+      run: docker build -t nodejsvuln:latest .
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: nodejs:latest
+        image-ref: nodejsvuln:latest
         format: 'table'
         exit-code: '1'
         ignore-unfixed: false
-        vuln-type: 'os'
+        vuln-type: 'os,libraries'
         scanners: 'vuln'
         severity: "HIGH,CRITICAL"
