@@ -6,14 +6,12 @@ jobs:
   build-docker-image:
     name: Build docker image
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: nodejs
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
     - name: Build Docker Image
-      run: docker build -t $IMAGE_NAME:latest .
+      run: docker build -t nodejs:latest .
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.20.0
