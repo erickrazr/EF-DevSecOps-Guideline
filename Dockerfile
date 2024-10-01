@@ -1,5 +1,5 @@
 #FROM 415704696994.dkr.ecr.us-east-1.amazonaws.com/alpine-infra-image:latest
-FROM node20
+FROM node:20
 
 USER node
 
