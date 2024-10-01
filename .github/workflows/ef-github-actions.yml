@@ -20,5 +20,6 @@ jobs:
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
-        vuln-type: 'vuln'
+        vuln-type: 'os,library'
+        scanners: 'vuln,secret'
         severity: 'MEDIUM,CRITICAL,HIGH'
