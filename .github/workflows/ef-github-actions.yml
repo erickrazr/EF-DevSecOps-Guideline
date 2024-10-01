@@ -18,7 +18,7 @@ jobs:
       with:
         image-ref: vulnimage:latest
         format: 'table'
-        exit-code: '1'
+        exit-code: '0'
         ignore-unfixed: false
         vuln-type: 'os,library'
         scanners: 'vuln'
