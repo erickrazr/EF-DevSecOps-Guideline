@@ -1,20 +1,17 @@
-FROM alpine:latest
+FROM ubuntu:noble
 LABEL MAINTAINER="Madhu Akula" INFO="Kubernetes Goat"
 
-COPY app-arm64.tar.gz /app-arm64.tar.gz
-COPY app.tar.gz /app.tar.gz
-
-RUN apk --no-cache add git py3-pip \
-    && pip install truffleHog; \
-    if [ `uname -m` = "aarch64" ]; then \
-    	tar -xvzf app-arm64.tar.gz -C / ; \
+RUN apt update && apt install stress-ng curl wget -y \
+    && cd /tmp; \
+    arch=`uname -m` && \
+    if [ $arch = "aarch64" ] || [ $arch = "arm64" ]; then \
+        GOTTY="gotty_2.0.0-alpha.3_linux_arm.tar.gz"; \
     else \
-    	tar -xvzf app.tar.gz -C / ; \
+        GOTTY="gotty_2.0.0-alpha.3_linux_amd64.tar.gz"; \
     fi; \
-    rm /app.tar.gz /app-arm64.tar.gz
+    wget https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/${GOTTY} \
+    && tar -xvzf ${GOTTY}; mv gotty /usr/local/bin/gotty
 
-EXPOSE 3000
+EXPOSE 8080
 
-WORKDIR /app/
-
-CMD ["./app"]
+CMD [ "gotty", "-w", "bash" ]
