@@ -22,4 +22,4 @@ jobs:
         ignore-unfixed: true
         vuln-type: 'os,library'
         scanners: 'vuln,secret'
-        severity: 'MEDIUM,CRITICAL,HIGH'
+   
