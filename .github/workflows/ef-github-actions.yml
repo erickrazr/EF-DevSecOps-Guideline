@@ -21,5 +21,4 @@ jobs:
         exit-code: '1'
         ignore-unfixed: false
         vuln-type: 'os'
-        scanners: 'vuln'
         severity: "HIGH,CRITICAL"
